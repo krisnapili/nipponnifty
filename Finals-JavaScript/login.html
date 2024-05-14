@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(to bottom, #000000, #333333);
+            color: white;
+            display: flex;
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
+
+        main {
+            flex-grow: 1; 
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .signup-container {
+            background-color: #333; 
+            padding: 45px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px; 
+            width: 100%; 
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: white; 
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #fff; 
+            border-radius: 3px;
+            background-color: transparent; 
+            color: white; 
+            outline: none; 
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #680000;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all .50s ease;
+            width: 100%; 
+        }
+
+        button:hover {
+            background-color: #c80000;
+        }
+
+        header {
+            background: #333;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            color: rgb(203, 0, 0);
+            text-shadow: 0 0 5px #8e2626, 0 0 10px #8e2626;
+        }
+
+        footer {
+            background: #333;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            color: rgb(203, 0, 0);
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+        }
+
+        .logo {
+            width: 50px; 
+            margin-right: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="C:\Users\acer\Desktop\Finals-JavaScript\logo\NNS LOGO.png" alt="Nippon Nifty Surplus Logo" class="logo">
+        <h1>Nippon Nifty Surplus</h1>
+    </header>
+  
+    <main>
+        <div class="signup-container">
+            <h2>Login to Your Account</h2>
+            <form id="signup-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit">LOGIN</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Nippon Nifty Surplus</p>
+    </footer>
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            const isLoggedIn = true; 
+
+            if (isLoggedIn) {
+                window.location.href = "file:///C:/Users/acer/Desktop/Finals-JavaScript/NipponNifty.html"; 
+            }
+        });
+    </script>    
+</body>
+</html>
+</body>
+</html>

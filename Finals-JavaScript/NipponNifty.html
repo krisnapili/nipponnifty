@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NipponNiftySurplus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #000000, #333333);
+            color: white;
+            overflow-y: scroll;
+        }
+
+        header {
+        background: #333;
+        padding: 15px;
+        padding-left: 5px;
+        padding-right: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        position: fixed; 
+        width: 100%;
+        z-index: 1000;
+        }
+
+
+        header h1 {
+            margin: 0;
+            color: rgb(203, 0, 0);
+            text-shadow: 0 0 5px #8e2626, 0 0 10px #8e2626;
+        }
+
+        header nav {
+            display: flex;
+            margin-left: auto;
+        }
+
+        header nav a {
+            color: rgb(173, 139, 139);
+            text-decoration: none;
+            margin-right: 10px;
+            margin-left: 10px;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            border: 1px solid darkred;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        header nav a:hover {
+            color: white;
+        }
+        header nav #account-btn {
+        color: rgb(173, 139, 139);
+        text-decoration: none;
+        margin-right: 15px;
+        margin-left: 10px;
+        text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+        border: 1px solid darkred;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: rgba(139, 0, 0, 0);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 16px; 
+        }
+
+        header nav #account-btn:hover {
+        color: white;
+        background-color: rgb(203, 0, 0);
+        }
+
+
+        footer {
+            background: #333;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: rgb(203, 0, 0);
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+        }
+
+        main {
+            padding: 80px 20px 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: margin-right 0.3s ease; 
+        }
+
+        .main-content {
+            margin-right: 0; 
+        }
+
+
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .shop-now-btn {
+            padding: 10px 20px;
+            background-color: rgba(139, 0, 0, 0.503);
+            color: rgb(255, 254, 254);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .shop-now-btn:hover {
+            background-color: rgb(203, 0, 0);
+        }
+
+        .welcome-container {
+            margin-top: 100px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-message {
+            font-size: 72px;
+            font-weight: bold;
+            color: rgb(173, 139, 139);
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            margin-top: 250px;
+            animation: glow 1s infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: rgb(173, 139, 139);
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            animation: glow 1s infinite alternate;
+        }
+
+        .subsubtitle {
+            font-size: 18px;
+            color: rgb(173, 139, 139);
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            }
+
+            to {
+                text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+            }
+        }
+
+        .products-section {
+    padding: 20px;
+    text-align: center;
+    margin-top: 230px;
+    transition: margin-right 0.3s ease; 
+}
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            grid-gap: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            background: #333;
+            color: white;
+            width: 350px; 
+            height: 100%;
+            position: fixed;
+            top: 0;
+            right: -350px; 
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+        .sidebar.active ~ .products-section {
+            margin-right: 350px; 
+        }
+
+        .sidebar.active ~ .main-content {
+            margin-right: 350px; 
+        }
+
+        .sidebar-content {
+            padding: 20px;
+        }
+
+        .account-info {
+            margin-bottom: 20px;
+        }
+
+        .account-info h2 {
+            margin-top: 0;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .cart-sidebar {
+            background: #333;
+            color: white;
+            width: 450px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            right: -450px;
+            transition: right 0.3s ease;
+            z-index: 1001; 
+            overflow-y: scroll;
+            padding-top: 80px;
+        }
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-sidebar.active ~ .main-content {
+             margin-right: 450px;
+        }
+
+        .cart-sidebar-content {
+            padding: 20px;
+        }
+
+        .close-cart-sidebar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #666;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px; 
+        }
+
+.cart-item-details {
+    display: flex;
+    align-items: center; 
+    flex: 1; 
+}
+
+.cart-item-name {
+    font-weight: bold;
+    margin-right: 15px; 
+}
+
+.cart-item-price {
+    color: #ccc;
+    margin-right: 15px; 
+}
+
+.quantity-btn {
+    cursor: pointer;
+    background-color: #680000;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px; 
+    margin-left: 12px;
+}
+
+.quantity-btn::before,
+.quantity-btn::after {
+    content: ' ';
+}
+
+.quantity-btn::before {
+    margin-right: 5px; 
+}
+
+.quantity-btn::after {
+    margin-left: 5px; 
+}
+
+#total-price {
+    position: absolute;
+    bottom: 170px; 
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    z-index: 1;
+}
+
+#total-price::before {
+    content: 'Total:        ';
+    margin-right: 50px; 
+    font-weight: bold;
+}
+.checkout-btn {
+    position: absolute;
+    bottom: 100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    min-width: 200px; 
+    background-color: rgba(139, 0, 0, 0.503);
+    color: rgb(255, 254, 254);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.checkout-btn:hover {
+    background-color: rgb(203, 0, 0);
+}
+        .add-to-cart-btn {
+            background-color: #680000;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .add-to-cart-btn:hover {
+            background-color: #c80000;
+        }
+        #cart-btn {
+            color: rgb(173, 139, 139);
+            text-decoration: none;
+            margin-right: 15px;
+            margin-left: 10px;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            border: 1px solid darkred;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: rgba(139, 0, 0, 0);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px; 
+        }
+
+        #cart-btn:hover {
+            color: white;
+            background-color: rgb(203, 0, 0);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="C:\Users\acer\Desktop\Finals-JavaScript\logo\NNS LOGO.png" alt="Nippon Nifty Surplus Logo" class="logo">
+    <h1> Nippon Nifty Surplus</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <button id="cart-btn">Cart</button>
+        <button id="account-btn">Account</button>
+        <a href="#contact">Contact Us</a>
+    </nav>
+</header>
+
+<main>
+    <section id="home">
+        <div class="welcome-container">
+            <div class="welcome-message">Welcome to Nippon Nifty Surplus!</div>
+            <div class="subtitle">Your one stop Japan Surplus online shop</div>
+            <div class="subsubtitle">あなたのワンストップ日本サープラスオンラインショップ</div>
+        </div>
+        <a href="#products" class="shop-now-btn">Shop Now!</a>
+    </section>
+
+    <section id="products" class="products-section">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <script>
+                const products = [
+                    {
+                        name: "Bento Box",
+                        price: "139.99",
+                        image: 'Products/bento_box.jpg',
+                        alt: "Bento Box",
+                        onclick: "addToCart('Bento Box', '139.99', 'Products/bento_box.jpg')"
+                    },
+                    {
+                        name: "Ceramic Tea Sets",
+                        price: "299.99",
+                        image: "Products/Ceramic_tea_sets.jpg",
+                        alt: "Ceramic Tea Sets",
+                        onclick: "addToCart('Ceramic Tea Sets', '299.99', 'Products/Ceramic_tea_sets.jpg')"
+                    },
+                    {
+                        name: "Traditional Japanese Fans",
+                        price: "69.99",
+                        image: "Products/Traditional_Japanese_fans.jpg",
+                        alt: "Traditional Japanese Fans",
+                        onclick: "addToCart('Traditional Japanese Fans', '69.99', 'Products/Traditional_Japanese_fans.jpg')"
+                    },
+                    {
+                        name: "Decorative Paper Lanterns",
+                        price: "224.99",
+                        image: "Products/Decorative_paper_lanterns.jpg",
+                        alt: "Decorative Paper Lanterns",
+                        onclick: "addToCart('Decorative Paper Lanterns', '224.99', 'Products/Decorative_paper_lanterns.jpg')"
+                    },
+                    {
+                        name: "Japanese Furniture",
+                        price: "3199.99",
+                        image: "Products/japanese_furniture.jpg",
+                        alt: "Japanese Furniture",
+                        onclick: "addToCart('Japanese Furniture', '3199.99', 'Products/japanese_furniture.jpg')"
+                    },
+                    {
+                        name: "Japanese Tableware Set",
+                        price: "1549.99",
+                        image: "Products/japanese_tableware_set.jpg",
+                        alt: "Japanese Tableware Set",
+                        onclick: "addToCart('Japanese Tableware Set', '1549.99', 'Products/japanese_tableware_set.jpg')"
+                    },
+                    {
+                        name: "Random Figurines",
+                        price: "299.99",
+                        image: "Products/random_figurines.jpeg",
+                        alt: "Random Figurines",
+                        onclick: "addToCart('Random Figurines', '299.99', 'Products/random_figurines.jpeg')"
+                    },
+                    {
+                        name: "Traditional Calligraphy Brushes and Ink",
+                        price: "239.99",
+                        image: "Products/Traditional_Calligraphy_Brushes_and_Ink.jpg",
+                        alt: "Traditional Calligraphy Brushes and Ink",
+                        onclick: "addToCart('Traditional Calligraphy Brushes and Ink', '239.99', 'Products/Traditional_Calligraphy_Brushes_and_Ink.jpg')"
+                    },
+                    {
+                        name: "Japanese Casserole",
+                        price: "1599.99",
+                        image: "Products/japanese_caserole.jpg",
+                        alt: "Japanese Casserole",
+                        onclick: "addToCart('Japanese Casserole', '1599.99', 'Products/japanese_caserole.jpg')"
+                    },
+                    {
+                        name: "Japanese Chopsticks",
+                        price: "69.99",
+                        image: "Products/japanese_chopsticks.jpg",
+                        alt: "Japanese Chopsticks",
+                        onclick: "addToCart('Japanese Chopsticks', '69.99', 'Products/japanese_chopsticks.jpg')"
+                    },
+                    {
+                        name: "Japanese Knives",
+                        price: "1449.99",
+                        image: "Products/japanese_knives.jpg",
+                        alt: "Japanese Knives",
+                        onclick: "addToCart('Japanese Knives', '1449.99', 'Products/japanese_knives.jpg')"
+                    },
+                    {
+                        name: "Badminton Racket",
+                        price: "1599.99",
+                        image: "Products/badminton_racket.jpg",
+                        alt: "Badminton Racket",
+                        onclick: "addToCart('Badminton Racket', '1599.99', 'Products/badminton_racket.jpg')"
+                    },
+                    {
+                        name: "Bike Helmets",
+                        price: "849.99",
+                        image: "Products/bike_helmets.jpg",
+                        alt: "Bike Helmets",
+                        onclick: "addToCart('Bike Helmets', '849.99', 'Products/bike_helmets.jpg')"
+                    },
+                    {
+                        name: "Crochet Bag",
+                        price: "349.99",
+                        image: "Products/crochet_bag.jpg",
+                        alt: "Crochet Bag",
+                        onclick: "addToCart('Crochet Bag', '349.99', 'Products/crochet_bag.jpg')"
+                    },
+                    {
+                        name: "Crochet Hat",
+                        price: "249.99",
+                        image: "Products/crochet_hat.jpg",
+                        alt: "Crochet Hat",
+                        onclick: "addToCart('Crochet Hat', '249.99', 'Products/crochet_hat.jpg')"
+                    },
+                    {
+                        name: "Japanese Wooden Cabinets",
+                        price: "4599.99",
+                        image: "Products/japanese_wooden_cabinets.jpg",
+                        alt: "Japanese Wooden Cabinets",
+                        onclick: "addToCart('Japanese Wooden Cabinets', '4599.99', 'Products/japanese_wooden_cabinets.jpg')"
+                    },
+                    {
+                        name: "Microfiber Towels",
+                        price: "199.99",
+                        image: "Products/microfiber_towels.jpg",
+                        alt: "Microfiber Towels",
+                        onclick: "addToCart('Microfiber Towels', '199.99', 'Products/microfiber_towels.jpg')"
+                    },
+                    {
+                        name: "Studded Tumblers with Straw",
+                        price: "159.99",
+                        image: "Products/studed_tumblers_with_straw.jpg",
+                        alt: "Studded Tumblers with Straw",
+                        onclick: "addToCart('Studded Tumblers with Straw', '159.99', 'Products/studed_tumblers_with_straw.jpg')"
+                    },
+                    {
+                        name: "Swimming Goggles",
+                        price: "139.99",
+                        image: "Products/swimming_goggles.jpg",
+                        alt: "Swimming Goggles",
+                        onclick: "addToCart('Swimming Goggles', '139.99', 'Products/swimming_goggles.jpg')"
+                    },
+                    {
+                        name: "Travel Foldable Bags",
+                        price: "389.99",
+                        image: "Products/travel_foldable_bags.jpg",
+                        alt: "Travel Foldable Bags",
+                        onclick: "addToCart('Travel Foldable Bags', '389.99', 'Products/travel_foldable_bags.jpg')"
+                    },
+                    {
+                        name: "Humidifier",
+                        price: "799.99",
+                        image: "Products/Humidifier.jpg",
+                        alt: "Humidifier",
+                        onclick: "addToCart('Humidifier', '799.99', 'Products/Humidifier.jpg')"
+                    }
+                ];
+                products.forEach(product => {
+                    document.write(`
+                        <div class="product">
+                            <img src="${product.image}" alt="${product.alt}">
+                            <p>${product.name}</p>
+                            <p>PHP ${product.price}</p>
+                            <button class="add-to-cart-btn" onclick="${product.onclick}">+</button>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <span class="close-sidebar" onclick="closeSidebar()">&times;</span>
+            <div class="account-info">
+                <h2>Account</h2>
+                <p id="username-display"></p>
+            </div>
+        </div>
+    </div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <span class="close-cart-sidebar" onclick="closeCartSidebar()">&times;</span>
+        <div class="cart-sidebar-content">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div> 
+            <div id="total-price"></div>
+            <button id="checkout-btn" class="checkout-btn">Check Out</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Nippon Nifty Surplus</p>
+</footer>
+<script>
+   document.getElementById("account-btn").addEventListener("click", function() {
+        document.getElementById("sidebar").classList.add("active");
+    });
+
+    function closeSidebar() {
+        document.getElementById("sidebar").classList.remove("active");
+    }
+
+    function setUsername(username) {
+        document.getElementById("username-display").textContent = "Welcome, " + username + "!";
+    }
+
+    const isLoggedIn = true;
+    if (isLoggedIn) {
+        const username = "User123"; 
+        setUsername(username);
+    }
+    
+    document.getElementById("cart-btn").addEventListener("click", function() {
+        document.getElementById("cart-sidebar").classList.add("active");
+    });
+
+    function closeCartSidebar() {
+        document.getElementById("cart-sidebar").classList.remove("active");
+    }
+
+    function addToCart(itemName, itemPrice, itemImage) {
+    const cartItemsContainer = document.getElementById("cart-items");
+    const totalPriceContainer = document.getElementById("total-price");
+
+    const cartButton = document.getElementById("cart-btn");
+    const cartItemsCount = document.querySelectorAll(".cart-item").length;
+    cartButton.textContent = `Cart (${cartItemsCount +1})` ;
+
+    const existingCartItem = cartItemsContainer.querySelector(`.cart-item[data-name="${itemName}"]`);
+    if (existingCartItem) {
+        const quantityElement = existingCartItem.querySelector(".cart-item-quantity");
+        const quantity = parseInt(quantityElement.textContent) + 1;
+        quantityElement.textContent = quantity;
+    } else {
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.setAttribute("data-name", itemName);
+
+        const cartItemHTML = `
+            <img src="${itemImage}" alt="${itemName}"> 
+            <div class="cart-item-details">
+                <span class="cart-item-name">${itemName}</span>
+                <span class="cart-item-price">PHP ${itemPrice}</span>
+                <button class="quantity-btn" onclick="decreaseQuantity(this)">-</button>
+                <span class="cart-item-quantity">1</span>
+                <button class="quantity-btn" onclick="increaseQuantity(this)">+</button>
+            </div>
+        `;
+
+        cartItem.innerHTML = cartItemHTML;
+        cartItemsContainer.appendChild(cartItem);
+    }
+
+        updateTotalPrice();
+    }
+
+function increaseQuantity(button) {
+        const quantityElement = button.parentNode.querySelector(".cart-item-quantity");
+        let quantity = parseInt(quantityElement.textContent) + 1;
+        quantityElement.textContent = quantity;
+
+        updateTotalPrice();
+    }
+
+    function decreaseQuantity(button) {
+        const quantityElement = button.parentNode.querySelector(".cart-item-quantity");
+        let quantity = parseInt(quantityElement.textContent) - 1;
+        if (quantity < 1) {
+            quantity = 1; 
+        }
+        quantityElement.textContent = quantity;
+
+        updateTotalPrice();
+    }
+    
+    function updateTotalPrice() {
+        const cartItems = document.querySelectorAll(".cart-item");
+        let total = 0;
+        cartItems.forEach(item => {
+            const priceElement = item.querySelector(".cart-item-price");
+            const quantityElement = item.querySelector(".cart-item-quantity");
+            const price = parseFloat(priceElement.textContent.split(" ")[1]); 
+            const quantity = parseInt(quantityElement.textContent);
+            total += price * quantity;
+        });
+    const totalPriceContainer = document.getElementById("total-price");
+        totalPriceContainer.textContent = "PHP " + total.toFixed(2);
+    }
+
+    document.getElementById("checkout-btn").addEventListener("click", function() {
+        
+        window.location.href = "file:///C:/Users/acer/Desktop/Finals-JavaScript/order_details.html";
+    });
+
+    document.getElementById("close-cart-btn").addEventListener("click", function() {
+        closeCartSidebar(); 
+    });
+
+</script>
+</body>
+</html>

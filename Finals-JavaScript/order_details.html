@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #000000, #333333);
+            color: white;
+            overflow-y: scroll;
+        }
+
+        header {
+            background: #333;
+            padding: 10px;
+            padding-left: 5px;
+            padding-right: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            position: fixed; 
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header .logo {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            color:  rgb(203, 0, 0);
+            text-shadow: 0 0 5px #8e2626, 0 0 10px #8e2626;
+        }
+
+        header h2 {
+            margin: 0;
+            color:  rgb(203, 0, 0);
+            text-shadow: 0 0 5px #8e2626, 0 0 10px #8e2626;
+        }
+
+        header nav {
+            display: flex;
+            margin-left: auto;
+        }
+
+        header nav a {
+            color: rgb(173, 139, 139);
+            text-decoration: none;
+            margin-right: 10px;
+            margin-left: 10px;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            border: 1px solid darkred;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        header nav a:hover {
+            color: white;
+        }
+
+        footer {
+            background: #333;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: rgb(203, 0, 0);
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+        }
+
+        main {
+            padding: 150px 15px 15px; 
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-container {
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .place-order-btn {
+            padding: 10px 20px;
+            background-color: rgba(139, 0, 0, 0.503);
+            color: rgb(255, 254, 254);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .place-order-btn:hover {
+            background-color: rgb(203, 0, 0);
+        }
+        #notifier {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        #notifier h2 {
+            margin-bottom: 20px;
+        }
+
+        #notifier button {
+            padding: 10px 20px;
+            background-color: rgba(139, 0, 0, 0.503);
+            color: rgb(255, 254, 254);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #notifier button:hover {
+            background-color: rgb(203, 0, 0);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="C:\Users\acer\Desktop\Finals-JavaScript\logo\NNS LOGO.png" alt="Nippon Nifty Surplus Logo" class="logo">
+    <h1> Nippon Nifty Surplus</h1>
+</header>
+
+<main>
+    <div class="form-container">
+        <h2>Order Details</h2>
+        <h3>Enter Your Personal Details</h3>
+        <form action="submit_order.php" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="text" name="address" placeholder="Your Address" required>
+            <input type="text" name="phone" placeholder="Your Phone Number" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="additional_info" placeholder="Additional Information"></textarea>
+            <button type="submit" class="place-order-btn">Place Order</button>
+        </form>
+    </div>
+    <div id="notifier">
+        <h2>Order Confirmed!</h2>
+        <p>Your order has been successfully placed. Thank you!</p>
+        <button onclick="redirectToMain()">Okay</button>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Nippon Nifty Surplus</p>
+</footer>
+<script>
+    function validateForm() {
+        var form = document.querySelector('.form-container form');
+        var inputs = form.querySelectorAll('input, textarea');
+        var isValid = true;
+
+        inputs.forEach(function(input) {
+            if (!input.checkValidity()) {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    }
+
+        function redirectToMain() {
+        // Redirect to main HTML file
+        window.location.href = "file:///C:/Users/acer/Desktop/Finals-JavaScript/NipponNifty.html";
+    }
+    document.querySelector('.place-order-btn').addEventListener('click', function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+
+        // Validate form
+        if (validateForm()) {
+            // If form is valid, show notifier
+            var notifier = document.getElementById('notifier');
+            notifier.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>

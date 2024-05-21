@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NipponNiftySurplus</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         body {
             margin: 0;
@@ -88,7 +89,7 @@
 
         main {
             padding: 80px 20px 20px;
-            text-align: center;
+            text-align: start;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -354,9 +355,9 @@
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
-.checkout-btn:hover {
+    .checkout-btn:hover {
     background-color: rgb(203, 0, 0);
-}
+    }
         .add-to-cart-btn {
             background-color: #680000;
             color: white;
@@ -387,11 +388,60 @@
             color: white;
             background-color: rgb(203, 0, 0);
         }
-    </style>
+        .contact-form {
+        display: flex;
+        flex-direction: column;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 400px; 
+        box-sizing: border-box;
+    }
+    .contact-form textarea {
+     height: 150px;
+    }
+
+    .contact-form input[type="text"]::placeholder,
+    .contact-form input[type="email"]::placeholder,
+    .contact-form textarea::placeholder {
+    color: #fff;
+    opacity: 0.7;
+    }
+
+    .contact-form input[type="submit"] {
+    background-color: #b90505;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    }
+
+    .contact-form input[type="submit"]:hover {
+    background-color: #8a0202;
+    }
+    .contact-info {
+    text-align: center; 
+    margin-bottom: 50px; 
+    }
+
+    .contact-form {
+    width: 50%; 
+    margin: 0 auto; 
+    }
+    
+</style>
 </head>
 <body>
 <header>
-    <img src="logo/NNS_LOGO.png" alt="Nippon Nifty Surplus Logo" class="logo">
+    <img src="logo\NNS_LOGO.png" alt="Nippon Nifty Surplus Logo" class="logo">
     <h1> Nippon Nifty Surplus</h1>
     <nav>
         <a href="#home">Home</a>
@@ -596,6 +646,32 @@
             <button id="checkout-btn" class="checkout-btn">Check Out</button>
         </div>
     </div>
+    <section id="contact" class="section" style="margin-bottom: 200px;">
+        <div style="display: flex; justify-content:center; align-items: center;">
+            <div>
+                <h2>Contact Information:</h2>
+                <p><i class='bx bx-envelope'></i> Email: NipponNifty_PH@email.com</p>
+                <p><i class='bx bx-phone'></i> Phone: +63-975-533-5861</p>
+                <p><i class='bx bxl-instagram'></i> Instagram: <a href="https://www.instagram.com/NipponNifty_/">@NipponNifty_PH</a></p>
+                <p><i class='bx bxl-facebook'></i> Facebook: <a href="https://www.facebook.com/NipponNifty">Nippon Nifty PH</a></p>
+            </div>
+            <div>
+                <h2>Send us a Feedback</h2>
+                <div class="contact-form">
+                   <form action="#" method="post">
+                        <label for="name">Name:</label><br>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required><br>
+                        <label for="message">Message:</label><br>
+                        <textarea id="message" name="message" placeholder="Send us your Feedback" required></textarea><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>              
+</div>
 </main>
 
 <footer>
@@ -699,7 +775,7 @@ function increaseQuantity(button) {
 
     document.getElementById("checkout-btn").addEventListener("click", function() {
         
-        window.location.href = "order_details.html";
+        window.location.href = "file:///C:/Users/acer/Desktop/Finals-JavaScript/order_details.html";
     });
 
     document.getElementById("close-cart-btn").addEventListener("click", function() {
@@ -709,3 +785,4 @@ function increaseQuantity(button) {
 </script>
 </body>
 </html>
+

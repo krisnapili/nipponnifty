@@ -201,16 +201,16 @@
     }
 
         function redirectToMain() {
-        // Redirect to main HTML file
+       
         window.location.href = "NipponNifty.html";
     }
     document.querySelector('.place-order-btn').addEventListener('click', function(event) {
-        // Prevent default form submission behavior
+      
         event.preventDefault();
 
-        // Validate form
+        
         if (validateForm()) {
-            // If form is valid, show notifier
+        
             var notifier = document.getElementById('notifier');
             notifier.style.display = 'block';
         }
